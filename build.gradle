@@ -11,11 +11,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-
-jar {
-    baseName = 'gs-spring-boot'
-    version =  '0.1.0'
-}
+apply plugin: 'war'
 
 repositories {
     mavenCentral()
@@ -25,12 +21,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    // tag::jetty[]
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile("org.springframework.boot:spring-boot-starter-jetty")
-    // end::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
